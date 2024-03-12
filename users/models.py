@@ -4,6 +4,12 @@ from django.db import models
 from config.settings import NULLABLE
 
 
+PAYMENT_METHODS = [
+    ('C', 'Наличные'),
+    ('T', 'Перевод на счет'),
+]
+
+
 class User(AbstractUser):
     username = None
 
@@ -22,3 +28,23 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'пользователь'
         verbose_name_plural = 'пользователи'
+
+
+class Payment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь')
+
+    data_paid = models.DateTimeField(auto_now_add=True, verbose_name='дата оплаты')
+
+    course = models.ForeignKey('lms.Course', on_delete=models.CASCADE, verbose_name='курс', **NULLABLE)
+    lesson = models.ForeignKey('lms.Lesson', on_delete=models.CASCADE, verbose_name='урок', **NULLABLE)
+
+    sum_paid = models.PositiveIntegerField(verbose_name='сумма оплаты')
+    payment_methode = models.CharField(max_length=1, choices=PAYMENT_METHODS, verbose_name='метод оплаты', default='C')
+
+    def __str__(self):
+        return f'''{self.user} оплатил(-а) курс или урок {self.course.name if self.course else self.lesson.name} 
+        на сумму {self.sum_paid}'''
+
+    class Meta:
+        verbose_name = 'платёж'
+        verbose_name_plural = 'платёжи'

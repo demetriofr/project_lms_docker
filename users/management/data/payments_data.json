@@ -1,0 +1,20 @@
+[
+    {
+        "user": 1,
+        "data_paid": "2024-03-03",
+        "course": 1,
+        "sum_paid": 500
+    },
+    {
+        "user": 1,
+        "data_paid": "2024-03-04",
+        "course": 2,
+        "sum_paid": 600
+    },
+    {
+        "user": 1,
+        "data_paid": "2024-03-05",
+        "lesson": 1,
+        "sum_paid": 100
+    }
+]
