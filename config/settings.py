@@ -139,3 +139,10 @@ AUTH_USER_MODEL = 'users.User'
 
 # For models
 NULLABLE = {'blank': True, 'null': True}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
