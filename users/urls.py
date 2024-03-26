@@ -19,5 +19,5 @@ router2.register(r'payments', PaymentViewSet, basename='payments')
 
 urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refressh'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ] + router.urls + router2.urls
