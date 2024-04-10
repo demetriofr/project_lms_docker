@@ -39,7 +39,7 @@ class Payment(models.Model):
     lesson = models.ForeignKey('lms.Lesson', on_delete=models.CASCADE, verbose_name='урок', **NULLABLE)
 
     sum_paid = models.PositiveIntegerField(verbose_name='сумма оплаты')
-    payment_methode = models.CharField(max_length=1, choices=PAYMENT_METHODS, verbose_name='метод оплаты', default='C')
+    payment_method = models.CharField(max_length=1, choices=PAYMENT_METHODS, verbose_name='метод оплаты', default='C')
 
     def __str__(self):
         return f'''{self.user} оплатил(-а) курс или урок {self.course.name if self.course else self.lesson.name} 

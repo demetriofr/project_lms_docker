@@ -12,21 +12,8 @@ class PaymentSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    payment = PaymentSerializer(source='payment_set', many=True)
+    payment = PaymentSerializer(source='payment_set', many=True, read_only=True)
 
     class Meta:
         model = User
         fields = '__all__'
-
-
-class CustomTokenObtainSerializer(TokenObtainSerializer):
-
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Add custom fields
-        token['username'] = user.username
-        token['email'] = user.email
-
-        return token

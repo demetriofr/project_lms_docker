@@ -147,6 +147,9 @@ NULLABLE = {'blank': True, 'null': True}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',  # настройки JWT-авторизации
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     )
 }
 
