@@ -4,6 +4,11 @@ from django.db import models
 from config.settings import NULLABLE
 
 
+class UserRoles(models.TextChoices):
+    MEMBER = 'member', 'участник'
+    MODERATOR = 'moderator', 'модератор'
+
+
 PAYMENT_METHODS = [
     ('C', 'Наличные'),
     ('T', 'Перевод на счет'),
@@ -18,6 +23,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=15, verbose_name='номер телефона', **NULLABLE)
     city = models.CharField(max_length=160, verbose_name='город', **NULLABLE)
     avatar = models.ImageField(upload_to='users/', verbose_name='аватар', **NULLABLE)
+    role = models.CharField(max_length=9, choices=UserRoles.choices, default=UserRoles.MEMBER, verbose_name='роль')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
