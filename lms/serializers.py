@@ -9,7 +9,7 @@ class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = '__all__'
-        validators = [ExceptYouTubeValidator('link_video')]
+        validators = [ExceptYouTubeValidator(field='link_video')]
 
 
 class CourseSerializer(serializers.ModelSerializer):
