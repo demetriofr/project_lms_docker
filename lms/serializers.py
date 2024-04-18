@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Course, Lesson
+from .models import Course, Lesson, Subscribe
 from .validators import ExceptYouTubeValidator
 
 
@@ -27,3 +27,10 @@ class CourseSerializer(serializers.ModelSerializer):
         Return the count of lessons for the given instance.
         """
         return instance.lesson_set.count()
+
+
+class SubscribeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Subscribe
+        fields = '__all__'
