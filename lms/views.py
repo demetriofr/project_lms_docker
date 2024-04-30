@@ -67,7 +67,7 @@ class SubscribeCreateAPIView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         user = self.request.user  # получаем текущего пользователя из self.request
-        course_id = self.request.data.get('id')  # получаем id курса из self.request.data
+        course_id = self.request.data.get('course')  # получаем id курса из self.request.data
         # получаем объект курса из базы с помощью get_object_or_404
         course_item = get_object_or_404(Course, id=course_id)
         # получаем объекты подписок по текущему пользователю и курса
